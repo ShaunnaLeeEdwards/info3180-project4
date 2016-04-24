@@ -110,6 +110,7 @@ def signup():
 
 
 @app.route('/api/user/<userid>/wishlist',methods=["GET","POST"])
+@login_required
 def wishes(userid):
     json_data = request.json
     if request.method=="GET":
@@ -136,6 +137,7 @@ def wishes(userid):
 
 
 @app.route('/api/user/<userid>/wishlist/delete/<wishid>', methods=["POST"])
+@login_required
 def deletewish(userid,wishid):
     if request.method =="POST":
         user = db.session.query(User).filter_by(userid=userid).first()
@@ -164,6 +166,7 @@ def get_images():
     
 
 @app.route('/api/getUser',methods=['GET','POST'])
+@login_required
 def getId():
    json_data= request.json
    user = User.query.filter_by(email=json_data['email']).first()
@@ -171,6 +174,7 @@ def getId():
 
 
 @app.route('/api/user/<userid>/wishlistshare', methods=['POST'])
+@login_required
 def sharewishlist(userid):
     if request.method == 'POST':
         emails= []

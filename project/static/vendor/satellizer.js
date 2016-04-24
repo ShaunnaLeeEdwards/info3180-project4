@@ -463,7 +463,8 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
             $http.post('/api/getUser', {"email": user.email})
               .success(function (data) {
                 //console.log(data);
-                localStorage.currentUser=data.userid;
+                localStorage.setItem("currentUser", data.userid);
+                
               })
               .error(function(error) {
                       console.log(error);
